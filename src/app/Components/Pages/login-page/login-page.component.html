@@ -1,26 +1,32 @@
 <section class="hero is-primary is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title akrorim large-text">
-          App Teste Web
-        </h1>
-        <div class="columns">
-          <div class="column is-half is-offset-one-quarter">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title akrorim large-text">
+        App Teste Web
+      </h1>
+      <div class="columns">
+
+        <div class="column is-half is-offset-one-quarter">
+          <form [formGroup]="form">
             <p class="control">
-              <input type="text" class="input is-medium" placeholder="Usuário">
+              <input type="email" (blur)="checkEmail()" class="input is-medium" placeholder="Usuário" formControlName="email">
+              <span class="tag is-danger" *ngIf="!form.controls.email.valid && !form.controls.email.pristine">E-mail inválido</span>
             </p>
             <br>
             <p class="control">
-                <input type="password" class="input is-medium" placeholder="Senha">
+              <input type="password" class="input is-medium" placeholder="Senha" formControlName="password">
+              <span class="tag is-danger" *ngIf="!form.controls.password.valid && !form.controls.password.pristine">Senha inválida</span>
             </p>
             <br>
             <p>
-                <a class="button is-primary is-inverted is-outlined is-fullwidth">Entrar</a>
-                <br>
-                <a class="button is-text is-fullwidth">Cadastrar</a>
+              <button (click)="submit()" class="button is-primary is-inverted is-outlined is-fullwidth"
+                [disabled]="!form.valid">Entrar</button>
+              <br>
+              <a routerLink='/signup' class="button is-text is-fullwidth">Cadastrar</a>
             </p>
-          </div>
+          </form>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

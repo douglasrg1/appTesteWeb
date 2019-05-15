@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { HomePageComponent } from './Components/Pages/home-page/home-page.compon
 import { LoginPageComponent } from './Components/Pages/login-page/login-page.component';
 import { SignupPageComponent } from './Components/Pages/signup-page/signup-page.component';
 import { CartPageComponent } from './Components/Pages/cart-page/cart-page.component';
+import {Routing, RoutingProviders} from './app.router';
+import {CartService} from './Services/Cart.Service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,11 @@ import { CartPageComponent } from './Components/Pages/cart-page/cart-page.compon
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    ReactiveFormsModule,
+    HttpModule,
+    Routing
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

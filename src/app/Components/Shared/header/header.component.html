@@ -14,17 +14,17 @@
         </div>
         <div id="navbarMenuHeroA" class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item">
+            <a routerLink = '/home' class="navbar-item">
               Inicio
             </a>
-            <a class="navbar-item">
-              Carrinho
+            <a routerLink = '/cart' class="navbar-item">
+              Carrinho({{totalItems}})
             </a>
             <a class="navbar-item">
               Meu Perfil
             </a>
             <span class="navbar-item">
-              <a class="button is-primary is-inverted">
+              <a routerLink = '/' class="button is-primary is-inverted">
                 <span class="icon">
                   <i class="fas fa-power-off"></i>
                 </span>
