@@ -14,6 +14,7 @@ import { SignupPageComponent } from './Components/Pages/signup-page/signup-page.
 import { CartPageComponent } from './Components/Pages/cart-page/cart-page.component';
 import {Routing, RoutingProviders} from './app.router';
 import {CartService} from './Services/Cart.Service';
+import {AuthService} from './Services/Authenticate.Service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {CartService} from './Services/Cart.Service';
     HttpModule,
     Routing
   ],
-  providers: [CartService],
+  providers: [CartService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

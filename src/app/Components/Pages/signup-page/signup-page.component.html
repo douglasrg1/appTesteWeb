@@ -6,34 +6,41 @@
       </h1>
       <div class="columns">
         <div class="column is-half is-offset-one-quarter">
-          <p class="control">
-            <input type="text" class="input is-medium" placeholder="Nome">
-          </p>
-          <p class="control">
-            <input type="text" class="input is-medium" placeholder="Sobrenome">
-          </p>
-          <p class="control">
-            <input type="email" class="input is-medium" placeholder="E-Mail">
-          </p>
-          <p class="control">
-            <input type="text" class="input is-medium" placeholder="CPF">
-          </p>
-          <p class="control">
-            <input type="text" class="input is-medium" placeholder="Usuário">
-          </p>
-          <p class="control">
-            <input type="password" class="input is-medium" placeholder="Senha">
-          </p>
-          <p class="control">
-            <input type="password" class="input is-medium" placeholder="Confirmar Senha">
-          </p>
-          <br>
-          <p>
-            <a class="button is-primary is-inverted is-outlined is-fullwidth">Salvar</a>
+          <div class="notification is-danger" *ngIf = "errors.length > 0">
+            <ul>
+              <li *ngFor="let error of errors">{{error.message}}</li>
+            </ul>
+          </div>
+          <form [formGroup] = 'form'>
+            <p class="control">
+              <input type="text" class="input is-medium" placeholder="Nome" formControlName='firstName'>
+            </p>
+            <p class="control">
+              <input type="text" class="input is-medium" placeholder="Sobrenome" formControlName='lastName'>
+            </p>
+            <p class="control">
+              <input type="email" class="input is-medium" placeholder="E-Mail" formControlName='email'>
+            </p>
+            <p class="control">
+              <input type="text" class="input is-medium" placeholder="CPF" formControlName='document'>
+            </p>
+            <p class="control">
+              <input type="text" class="input is-medium" placeholder="Usuário" formControlName='userName'>
+            </p>
+            <p class="control">
+              <input type="password" class="input is-medium" placeholder="Senha" formControlName='password'>
+            </p>
+            <p class="control">
+              <input type="password" class="input is-medium" placeholder="Confirmar Senha" formControlName='confirmPassword'>
+            </p>
             <br>
-            <a class="button is-text is-fullwidth">Voltar</a>
-          </p>
-
+            <p>
+                <button (click)="submit()" class="button is-primary is-inverted is-outlined is-fullwidth"
+                  [disabled]="!form.valid">Cadastrar</button>
+                <br>
+                <a routerLink='/signup' class="button is-text is-fullwidth">Voltar</a>
+              </p>
+          </form>
         </div>
       </div>
     </div>

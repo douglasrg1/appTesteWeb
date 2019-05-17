@@ -9,8 +9,8 @@
         <div class="column is-half is-offset-one-quarter">
           <form [formGroup]="form">
             <p class="control">
-              <input type="email" (blur)="checkEmail()" class="input is-medium" placeholder="Usuário" formControlName="email">
-              <span class="tag is-danger" *ngIf="!form.controls.email.valid && !form.controls.email.pristine">E-mail inválido</span>
+              <input type="text"class="input is-medium" placeholder="Usuário" formControlName="userName">
+              <span class="tag is-danger" *ngIf="!form.controls.userName.valid && !form.controls.userName.pristine">Usuário inválido</span>
             </p>
             <br>
             <p class="control">

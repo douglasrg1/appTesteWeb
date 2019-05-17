@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validator, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidator} from '../../../Validators/CustomerValidators';
-import {DataService} from '../../../Services/Data.Service';
+import { DataService } from '../../../Services/Data.Service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -11,32 +11,38 @@ import {DataService} from '../../../Services/Data.Service';
 export class LoginPageComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private dataService: DataService) {
+  constructor(private fb: FormBuilder, private dataService: DataService, private router: Router) {
     this.form = this.fb.group({
-      email: ['', Validators.compose([
+      userName: ['', Validators.compose([
         Validators.minLength(5),
         Validators.maxLength(160),
-        Validators.required,
-        CustomValidator.EmailValidator
+        Validators.required
       ])],
-      password: ['',Validators.compose([
+      password: ['', Validators.compose([
         Validators.minLength(6),
         Validators.maxLength(20),
         Validators.required
       ])],
     });
+    const token = localStorage.getItem('appTeste.Token');
+    if (token) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
-  ngOnInit() {}
-  
-  checkEmail(){
-      
-    console.log(this.form.controls['email'].value);
+  ngOnInit() { }
+
+  submit() {
+    this.dataService.authenticate(this.form.value).subscribe(result => {
+      console.log(result);
+      localStorage.setItem('appTeste.Token', result.token);
+      localStorage.setItem('appTeste.User', result.users.name);
+      this.router.navigateByUrl('/home');
+
+    }, error => {
+      console.log(error);
+    });
   }
 
-  submit(){
-    this.dataService.createUser(this.form.value);
-  }
-  
 
 }
