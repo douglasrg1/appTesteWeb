@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public user: string = "";
   constructor(private cartService: CartService, private router:Router) {
     this.cartService.cartChange.subscribe((data) => {
-
+      this.totalItems = data.length;
     });
     const data = localStorage.getItem('appTeste.User');
     if (data) {

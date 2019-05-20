@@ -17,4 +17,18 @@ export class DataService{
         const options = new RequestOptions({headers : new Headers({'Content-Type': 'application/x-www-form-urlencoded'})});
         return this.http.post(this.serviceUrl + 'v1/autenticar',dt,options).map((res:Response)=>res.json());
     }
+    getProducts(){
+        
+        return this.http.get(this.serviceUrl + "v1/produtos").map((res:Response)=>res.json());
+    }
+    createOrder(data: any) {
+        var token = localStorage.getItem('appTeste.Token');
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', `Bearer ${token}`);
+        let options = new RequestOptions({ headers: headers });
+        console.log(data);
+        return this.http
+            .post(this.serviceUrl + 'v1/orders', data, options)
+            .map((res: Response) => res.json());
+    }
 }

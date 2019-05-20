@@ -13,14 +13,16 @@
             <th class="has-text-centered">Valor</th>
             <th class="has-text-centered">Quantidade</th>
             <th class="has-text-centered">Total</th>
+            <th class="has-text-centered">Remover</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="has-text-centered">Mouse</td>
-            <td class="has-text-centered">299.90</td>
-            <td class="has-text-centered">1</td>
-            <td class="has-text-centered"><strong>299.90</strong></td>
+          <tr *ngFor="let item of items">
+            <td class="has-text-centered">{{item.Product.title}}</td>
+            <td class="has-text-centered">{{item.Product.price | number:'1.2-2'}}</td>
+            <td class="has-text-centered">{{item.Quantity}}</td>
+            <td class="has-text-centered"><strong>{{item.Product.price * item.Quantity | number:'1.2-2'}}</strong></td>
+            <td class="has-text-centered"><a class="button is-small is-danger" (click)="remove(item)">Remover</a></td>
           </tr>
         </tbody>
         <tfoot>
@@ -39,7 +41,7 @@
         </tfoot>
       </table>
       <p class="has-text-right">
-          <button class="button is-success is-large animated pulse infinite"><i class="fa fa-check">&nbsp;&nbsp; Finalizar Compra</i></button>
+          <button (click)="checkout()" class="button is-success is-large animated pulse infinite"><i class="fa fa-check">&nbsp;&nbsp; Finalizar Compra</i></button>
       </p>
     </div>
   </section>
