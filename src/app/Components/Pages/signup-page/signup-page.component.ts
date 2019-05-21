@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class SignupPageComponent implements OnInit {
 
   public form: FormGroup;
-  private errors:any[] = [];
+  public errors:any[] = [];
   constructor(private fb: FormBuilder, private dataService: DataService,private route:Router) {
     this.form = this.fb.group({
       firstName: ['', Validators.compose([

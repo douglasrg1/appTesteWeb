@@ -9,12 +9,12 @@
         <div class="column is-half is-offset-one-quarter">
           <form [formGroup]="form">
             <p class="control">
-              <input type="text"class="input is-medium" placeholder="Usuário">
-              
+              <input type="text"class="input is-medium" placeholder="Usuário" formControlName='userName'>
+              <span class="tag is-danger" *ngIf="!form.controls.userName.valid && !form.controls.userName.pristine">Usuário inválido</span>
             </p>
             <br>
             <p class="control">
-              <input type="password" class="input is-medium" placeholder="Senha" formControlName="password">
+              <input type="password" class="input is-medium" placeholder="Senha" formControlName='password'>
               <span class="tag is-danger" *ngIf="!form.controls.password.valid && !form.controls.password.pristine">Senha inválida</span>
             </p>
             <br>

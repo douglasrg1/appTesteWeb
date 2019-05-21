@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validator, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from '../../../Services/Data.Service';
 import { Router } from '@angular/router';
 
@@ -13,11 +13,11 @@ export class LoginPageComponent implements OnInit {
   public form: FormGroup;
   constructor(private fb: FormBuilder, private dataService: DataService, private router: Router) {
     this.form = this.fb.group({
-      // userName: ['', Validators.compose([
-      //   Validators.minLength(5),
-      //   Validators.maxLength(160),
-      //   Validators.required
-      // ])],
+      userName: ['', Validators.compose([
+        Validators.minLength(5),
+        Validators.maxLength(160),
+        Validators.required
+      ])],
       password: ['', Validators.compose([
         Validators.minLength(6),
         Validators.maxLength(20),
