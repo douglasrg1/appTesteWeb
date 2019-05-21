@@ -10,7 +10,6 @@
           <form [formGroup]="form">
             <p class="control">
               <input type="text"class="input is-medium" placeholder="Usuário" formControlName='userName'>
-              <span class="tag is-danger" *ngIf="!form.controls.userName.valid && !form.controls.userName.pristine">Usuário inválido</span>
             </p>
             <br>
             <p class="control">
