@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../Services/Cart.Service';
 import { DataService } from '../../../Services/Data.Service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -13,7 +13,7 @@ export class CartPageComponent implements OnInit {
   public items: any[] = [];
   public discount: number = 0;
   public deliveryFee: number = 5;
-  constructor(private cartService: CartService,private dataService: DataService,private router:Router) { }
+  constructor(private cartService: CartService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.items = this.cartService.items;
@@ -23,7 +23,7 @@ export class CartPageComponent implements OnInit {
   }
   checkout() {
     var data = {
-      customer: 1,
+      customer: 9,
       deliveryFee: this.deliveryFee,
       discount: this.discount,
       items: []
@@ -38,9 +38,20 @@ export class CartPageComponent implements OnInit {
 
     this.dataService.createOrder(data)
       .subscribe(result => {
-        alert('Pedido criado com sucesso!');
-        this.cartService.clear();
-        this.router.navigateByUrl('/home');
+        console.log(result);
+        if (result.success == true) {
+          alert('Pedido criado com sucesso!');
+          this.cartService.clear();
+          this.router.navigateByUrl('/home');
+        }
+        else{
+          let res = [];
+          result.data.forEach(element => {
+            res.push(element.message)
+          });
+          alert(res);
+        }
+
       }, err => {
         console.log(err);
       });

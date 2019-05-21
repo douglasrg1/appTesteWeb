@@ -26,7 +26,6 @@ export class DataService{
         let headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', `Bearer ${token}`);
         let options = new RequestOptions({ headers: headers });
-        console.log(data);
         return this.http
             .post(this.serviceUrl + 'v1/orders', data, options)
             .map((res: Response) => res.json());

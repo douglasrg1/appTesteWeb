@@ -34,10 +34,15 @@ export class LoginPageComponent implements OnInit {
 
   submit() {
     this.dataService.authenticate(this.form.value).subscribe(result => {
-      console.log(result);
-      localStorage.setItem('appTeste.Token', result.token);
-      localStorage.setItem('appTeste.User', result.users.name);
-      this.router.navigateByUrl('/home');
+      if (result.token) {
+        localStorage.setItem('appTeste.Token', result.token);
+        localStorage.setItem('appTeste.User', result.users.name);
+        this.router.navigateByUrl('/home');
+      }
+      else {
+        alert(result.message);
+      }
+
 
     }, error => {
       console.log(error);
